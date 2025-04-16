@@ -17,6 +17,7 @@ A vaporwave-style image generation app using the BlackForestLabs API.
 - Node.js 18.x or later
 - npm or yarn
 - BlackForestLabs API key
+- BlackForestLabs model ID
 
 ### Installation
 
@@ -35,9 +36,10 @@ yarn install
 
 3. Set up your environment variables:
    - Create a `.env` file in the root directory
-   - Add your BlackForestLabs API key:
+   - Add your BlackForestLabs API key and model ID:
    ```
    NEXT_PUBLIC_BLACKFOREST_API_KEY=your_api_key_here
+   NEXT_PUBLIC_MODEL_ID=your_model_id_here
    ```
    - For local development, you can also use `.env.local` which will override `.env` values
 
@@ -68,6 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 The app uses dotenv to manage environment variables:
 
 - `NEXT_PUBLIC_BLACKFOREST_API_KEY`: Your BlackForestLabs API key
+- `NEXT_PUBLIC_MODEL_ID`: Your BlackForestLabs model ID
 
 **Note**: Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser. Make sure not to commit your actual API keys to version control.
 

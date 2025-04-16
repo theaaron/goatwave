@@ -1,13 +1,24 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #ff6ad5;
-  --secondary: #94d0ff;
-  --accent: #ad8cff;
-  --neon: #c774e8;
+  --background: #f5f5f5;
+  --foreground: #333333;
+  --primary: #00b4b4;
+  --secondary: #ff6ad5;
+  --accent: #008080;
+  --neon: #00cccc;
   --retro: #ff9a8b;
+  --green: #4a9e7d;
+  --cyan: #00ffff;
+  --pastel-pink: #ffb5e8;
+  --pastel-blue: #b5e0ff;
+  --pastel-purple: #d5b5ff;
+  --pastel-green: #b5ffd5;
+  --pastel-teal: #b5fff5;
+  --vaporwave-font: 'Press Start 2P', cursive;
+  --title-font: 'Orbitron', sans-serif;
 }
 
 @theme inline {
@@ -22,79 +33,315 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   background-image: 
-    linear-gradient(45deg, rgba(255, 106, 213, 0.1) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(148, 208, 255, 0.1) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(173, 140, 255, 0.1) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(199, 116, 232, 0.1) 75%);
+    linear-gradient(45deg, rgba(255, 106, 213, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 255, 159, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(173, 140, 255, 0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 255, 255, 0.05) 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
 }
 
 .vaporwave-text {
   color: var(--primary);
-  text-shadow: 2px 2px 0 var(--secondary), 
-               4px 4px 0 var(--accent);
+  text-shadow: 3px 3px 0 var(--secondary), 
+               6px 6px 0 var(--accent);
   letter-spacing: 2px;
   font-weight: bold;
+  font-family: var(--vaporwave-font);
 }
 
 .vaporwave-button {
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  border: 2px solid var(--secondary);
+  background: var(--primary);
   color: white;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 10px var(--neon);
+  border: 2px solid var(--accent);
   transition: all 0.3s ease;
+  text-shadow: 1px 1px 0 var(--accent);
+  position: relative;
+  overflow: hidden;
 }
 
 .vaporwave-button:hover {
+  background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 0 15px var(--neon), 0 0 30px var(--retro);
+  box-shadow: 0 4px 12px rgba(0, 180, 180, 0.3);
+}
+
+.vaporwave-button:active {
+  transform: translateY(1px);
 }
 
 .vaporwave-card {
   background: rgba(10, 10, 10, 0.8);
-  border: 2px solid var(--secondary);
-  box-shadow: 0 0 15px var(--neon);
+  border: 2px solid var(--primary);
   backdrop-filter: blur(5px);
 }
 
 .vaporwave-input {
   background: rgba(10, 10, 10, 0.7);
-  border: 1px solid var(--accent);
+  border: 1px solid var(--primary);
   color: var(--foreground);
-  box-shadow: 0 0 5px var(--neon);
 }
 
 .vaporwave-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 10px var(--neon);
   outline: none;
+}
+
+/* Pastel chat components */
+.pastel-card {
+  background: rgba(255, 181, 232, 0.8);
+  border: 2px solid var(--pastel-teal);
+  box-shadow: 0 4px 12px rgba(181, 255, 245, 0.3);
+  color: #333;
+}
+
+.pastel-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--pastel-teal);
+  color: var(--foreground);
+  transition: all 0.3s ease;
+}
+
+.pastel-input:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 2px rgba(255, 106, 213, 0.2);
+  outline: none;
+}
+
+.pastel-button {
+  background: var(--pastel-teal);
+  color: var(--foreground);
+  border: 1px solid var(--secondary);
+  transition: all 0.3s ease;
+}
+
+.pastel-button:hover {
+  background: var(--secondary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 106, 213, 0.3);
+}
+
+.pastel-button:active {
+  transform: translateY(1px);
+}
+
+.pastel-text {
+  color: var(--pastel-pink);
+  text-shadow: 1px 1px 0 var(--pastel-purple);
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 @keyframes glitch {
   0% {
-    text-shadow: 2px 2px 0 var(--secondary), 
-                 4px 4px 0 var(--accent);
+    text-shadow: 3px 3px 0 var(--secondary), 
+                 6px 6px 0 var(--accent);
   }
   25% {
-    text-shadow: -2px -2px 0 var(--secondary), 
-                 -4px -4px 0 var(--accent);
+    text-shadow: -3px -3px 0 var(--secondary), 
+                 -6px -6px 0 var(--accent);
   }
   50% {
-    text-shadow: 2px -2px 0 var(--secondary), 
-                 4px -4px 0 var(--accent);
+    text-shadow: 3px -3px 0 var(--secondary), 
+                 6px -6px 0 var(--accent);
   }
   75% {
-    text-shadow: -2px 2px 0 var(--secondary), 
-                 -4px 4px 0 var(--accent);
+    text-shadow: -3px 3px 0 var(--secondary), 
+                 -6px 6px 0 var(--accent);
   }
   100% {
-    text-shadow: 2px 2px 0 var(--secondary), 
-                 4px 4px 0 var(--accent);
+    text-shadow: 3px 3px 0 var(--secondary), 
+                 6px 6px 0 var(--accent);
   }
 }
 
 .glitch-text {
-  animation: glitch 3s infinite;
+  animation: glitch 5s infinite;
+  font-family: var(--vaporwave-font);
+}
+
+/* Add a scanline effect */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--green);
+  font-size: 0.875rem;
+}
+
+.vaporwave-title {
+  font-family: var(--title-font);
+  color: var(--primary);
+  text-shadow: 2px 2px 0 var(--secondary);
+  letter-spacing: 1px;
+  font-weight: bold;
+  position: relative;
+  overflow: visible;
+}
+
+/* Create a dramatic trailing effect with multiple layers */
+.vaporwave-title::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-20px) translateY(20px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.vaporwave-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-40px) translateY(40px);
+  opacity: 0.5;
+  z-index: -2;
+}
+
+/* Add multiple trailing elements with decreasing opacity */
+.vaporwave-title-trail-1 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-60px) translateY(60px);
+  opacity: 0.4;
+  z-index: -3;
+}
+
+.vaporwave-title-trail-2 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-80px) translateY(80px);
+  opacity: 0.3;
+  z-index: -4;
+}
+
+.vaporwave-title-trail-3 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-100px) translateY(100px);
+  opacity: 0.2;
+  z-index: -5;
+}
+
+.vaporwave-title-trail-4 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-120px) translateY(120px);
+  opacity: 0.1;
+  z-index: -6;
+}
+
+.vaporwave-title-trail-5 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-140px) translateY(140px);
+  opacity: 0.05;
+  z-index: -7;
+}
+
+.vaporwave-title-trail-6 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-160px) translateY(160px);
+  opacity: 0.03;
+  z-index: -8;
+}
+
+.vaporwave-title-trail-7 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-180px) translateY(180px);
+  opacity: 0.02;
+  z-index: -9;
+}
+
+.vaporwave-title-trail-8 {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 2px 2px 0 #333;
+  transform: translateX(-200px) translateY(200px);
+  opacity: 0.01;
+  z-index: -10;
+}
+
+/* Remove the interactive dragging classes */
+.vaporwave-title:hover::before,
+.vaporwave-title:active::before,
+.vaporwave-title.dragging::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
