@@ -135,20 +135,24 @@ export default function Home() {
             <span className="vaporwave-title-trail-7">GOATWAVE</span>
             <span className="vaporwave-title-trail-8">GOATWAVE</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#4a9e7d]">
+          {/* <p className="text-xl md:text-2xl text-[#4a9e7d]">
             Generate stunning vaporwave-style images with AI
-          </p>
+          </p> */}
         </header>
 
         <div className="pastel-card p-6 md:p-8 rounded-lg mb-8">
           <div className="mb-6">
-            <label htmlFor="prompt" className="block text-lg mb-2 text-[#333]">
-              Enter your prompt
-            </label>
+            <div className="vaporwave-flavor-text">
+              Ｔｈｉｓ ｉｓ ａ Ｆｌｕｘ モデル fine-tuned with a custom LoRA: LEBRONGOATWAVE
+              <br />
+              Featuring レブロン・ジェームズ × ヴェイパーウェーブ 美学
+              <br />
+              淡い夢の風景、ネオンの空、グリッドの下で神話が再構築される
+            </div>
             <textarea
               id="prompt"
               className="pastel-input w-full p-3 rounded-md h-32"
-              placeholder="lebron james sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic"
+              placeholder="Lebron James sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
@@ -164,14 +168,6 @@ export default function Home() {
               disabled={loading}
             >
               {loading ? "Generating..." : "Generate Image"}
-            </button>
-            
-            <button
-              className="pastel-button px-8 py-3 rounded-md text-lg font-bold"
-              onClick={testApiRoute}
-              disabled={loading}
-            >
-              Test API
             </button>
           </div>
 
@@ -224,7 +220,7 @@ export default function Home() {
 
       <footer className="mt-12 text-center text-sm opacity-70">
         <p className="text-[#4a9e7d]">Powered by BlackForestLabs API</p>
-        <p className="mt-2">© {new Date().getFullYear()} GOATWAVE</p>
+        <p className="mt-2">soft-rendered by aaron · 夢の現実</p>
       </footer>
     </div>
   );

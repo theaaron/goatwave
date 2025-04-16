@@ -345,3 +345,14 @@ footer {
 .vaporwave-title.dragging::before {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
+
+.vaporwave-flavor-text {
+  font-family: var(--vaporwave-font);
+  color: var(--primary);
+  text-shadow: 1px 1px 0 var(--secondary);
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
