@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 
 // Configure for Vercel serverless functions
-export const maxDuration = 120; // Set maximum duration to 120 seconds
+// Removed maxDuration setting that requires a pro account
 export const dynamic = 'force-dynamic'; // Disable static optimization
 
 export async function POST(request: Request) {
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
             'Content-Type': 'application/json',
             'X-Key': apiKey
           },
-          timeout: 15000 // 15 second timeout for initial request
+          timeout: 10000 // 10 second timeout for initial request
         }
       );
       

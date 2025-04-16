@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
-export const maxDuration = 30; // 30 seconds should be enough for status checks
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
@@ -25,7 +24,7 @@ export async function POST(request: Request) {
             'Content-Type': 'application/json',
             'X-Key': apiKey
           },
-          timeout: 10000 // 10 second timeout for status checks
+          timeout: 8000 // 8 second timeout for status checks
         }
       );
       
