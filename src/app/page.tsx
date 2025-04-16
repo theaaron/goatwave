@@ -18,8 +18,8 @@ export default function Home() {
 
   useEffect(() => {
     // Get API key and model ID from environment variables
-    setApiKey(process.env.NEXT_PUBLIC_BLACKFOREST_API_KEY || "");
-    setModelId(process.env.NEXT_PUBLIC_MODEL_ID || "");
+    setApiKey(process.env.BLACKFOREST_API_KEY || "");
+    setModelId(process.env.MODEL_ID || "");
   }, []);
 
   const generateImage = async () => {

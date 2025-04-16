@@ -27,7 +27,7 @@ rl.question('Enter your BlackForestLabs API key: ', (apiKey) => {
       return;
     }
 
-    const envContent = `NEXT_PUBLIC_BLACKFOREST_API_KEY=${apiKey}\nNEXT_PUBLIC_MODEL_ID=${modelId}\n`;
+    const envContent = `BLACKFOREST_API_KEY=${apiKey}\nMODEL_ID=${modelId}\n`;
     
     // Write to .env file
     fs.writeFileSync(path.join(__dirname, '.env'), envContent);
