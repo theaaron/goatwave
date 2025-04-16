@@ -38,14 +38,15 @@ yarn install
    - Create a `.env` file in the root directory
    - Add your BlackForestLabs API key and model ID:
    ```
-   NEXT_PUBLIC_BLACKFOREST_API_KEY=your_api_key_here
-   NEXT_PUBLIC_MODEL_ID=your_model_id_here
+   BLACKFOREST_API_KEY=your_api_key_here
+   MODEL_ID=your_model_id_here
+   NEXT_PUBLIC_USE_MOCK_RESPONSE=false
    ```
    - For local development, you can also use `.env.local` which will override `.env` values
 
 4. Update the model ID in `src/app/page.tsx` with your specific tuned model ID:
 ```javascript
-model_id: "YOUR_MODEL_ID", // Replace with your specific model ID
+model_id: process.env.MODEL_ID, // This will be securely accessed from server-side
 ```
 
 ### Running the Development Server
@@ -69,10 +70,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The app uses dotenv to manage environment variables:
 
-- `NEXT_PUBLIC_BLACKFOREST_API_KEY`: Your BlackForestLabs API key
-- `NEXT_PUBLIC_MODEL_ID`: Your BlackForestLabs model ID
+- `BLACKFOREST_API_KEY`: Your BlackForestLabs API key (server-side only)
+- `MODEL_ID`: Your BlackForestLabs model ID (server-side only)
+- `NEXT_PUBLIC_USE_MOCK_RESPONSE`: Toggle for mock responses (client-side accessible)
 
-**Note**: Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser. Make sure not to commit your actual API keys to version control.
+**Security Note**: 
+- The API key and model ID are kept server-side only and are not exposed to the client
+- Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser
+- Make sure not to commit your actual API keys to version control
+- When deploying to Vercel, add these environment variables in the project settings
 
 ## Technologies Used
 
