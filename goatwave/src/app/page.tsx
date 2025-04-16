@@ -14,6 +14,7 @@ export default function Home() {
   const [error, setError] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [modelId, setModelId] = useState("");
+  const placeholderText = "lebron james sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic";
 
   useEffect(() => {
     // Get API key and model ID from environment variables
@@ -117,6 +118,13 @@ export default function Home() {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Tab' && !prompt.trim()) {
+      e.preventDefault();
+      setPrompt(placeholderText);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
       <div className="w-full max-w-4xl">
@@ -152,9 +160,10 @@ export default function Home() {
             <textarea
               id="prompt"
               className="pastel-input w-full p-3 rounded-md h-32"
-              placeholder="Lebron James sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic"
+              placeholder={placeholderText}
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
             {/* <p className="text-sm mt-2 text-[#333]">
               Note: "LEBRONGOATWAVE" will be automatically added to your prompt
@@ -167,7 +176,7 @@ export default function Home() {
               onClick={generateImage}
               disabled={loading}
             >
-              {loading ? "Generating..." : "Generate Image"}
+              {loading ? "Ｌｏａｄｉｎｇ　美学" : "Ｇｅｎｅｒａｔｅ　夢の風景"}
             </button>
           </div>
 
@@ -178,9 +187,9 @@ export default function Home() {
 
         {loading && (
           <div className="pastel-card p-6 md:p-8 rounded-lg mb-8">
-            <h2 className="text-2xl font-bold mb-4 text-center pastel-text">
+            {/* <h2 className="text-2xl font-bold mb-4 text-center pastel-text">
               Generating Your Image
-            </h2>
+            </h2> */}
             <div className="relative flex justify-center">
               <div className="w-full max-w-3xl aspect-[4/3] bg-gradient-to-r from-[#ffb5e8] to-[#b5e0ff] rounded-md blur-sm"></div>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -188,16 +197,13 @@ export default function Home() {
               </div>
             </div>
             <p className="mt-4 text-center text-[#333]">
-              This may take a minute or two. Please be patient...
+            ｄｒｅａｍ．ｒｅｎｄｅｒ（）．．．バーチャル美夢
             </p>
           </div>
         )}
 
         {imageUrl && (
           <div className="pastel-card p-6 md:p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-center pastel-text">
-              Your Generated Image
-            </h2>
             <div className="flex justify-center">
               <img
                 src={imageUrl}
@@ -209,9 +215,9 @@ export default function Home() {
               <a
                 href={imageUrl}
                 download="goatwave-image.png"
-                className="pastel-button px-6 py-2 rounded-md text-sm font-medium"
+                className="pastel-button px-6 py-2 rounded-md text-lg font-bold"
               >
-                Download Image
+                Ｄｏｗｎｌｏａｄ　夢の欠片
               </a>
             </div>
           </div>
@@ -219,7 +225,6 @@ export default function Home() {
       </div>
 
       <footer className="mt-12 text-center text-sm opacity-70">
-        <p className="text-[#4a9e7d]">Powered by BlackForestLabs API</p>
         <p className="mt-2">soft-rendered by aaron · 夢の現実</p>
       </footer>
     </div>
