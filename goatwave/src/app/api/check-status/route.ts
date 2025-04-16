@@ -15,6 +15,53 @@ export async function POST(request: Request) {
       );
     }
 
+    // Check if this is a mock inference ID
+    if (inferenceId.startsWith('mock-')) {
+      console.log('Handling mock inference ID:', inferenceId);
+      
+      // Extract the timestamp from the mock ID
+      const timestamp = parseInt(inferenceId.split('-')[1]);
+      const elapsedTime = Date.now() - timestamp;
+      
+      // Simulate different states based on elapsed time
+      if (elapsedTime < 5000) {
+        // First 5 seconds: still processing
+        return NextResponse.json({
+          status: 'processing',
+          message: "MOCK RESPONSE - Image generation in progress (no API credits used)"
+        });
+      } else if (elapsedTime < 10000) {
+        // 5-10 seconds: 50% chance of success or failure
+        if (Math.random() > 0.5) {
+          return NextResponse.json({
+            status: 'ready',
+            output: [
+              "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop"
+            ],
+            message: "MOCK RESPONSE - Image generated successfully (no API credits used)"
+          });
+        } else {
+          return NextResponse.json(
+            { 
+              status: 'failed',
+              error: 'MOCK RESPONSE - Image generation failed', 
+              details: "This is a simulated failure for testing purposes"
+            },
+            { status: 500 }
+          );
+        }
+      } else {
+        // After 10 seconds: always return success
+        return NextResponse.json({
+          status: 'ready',
+          output: [
+            "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop"
+          ],
+          message: "MOCK RESPONSE - Image generated successfully (no API credits used)"
+        });
+      }
+    }
+
     try {
       // Check the result with a shorter timeout
       const resultResponse = await axios.get(
@@ -24,7 +71,7 @@ export async function POST(request: Request) {
             'Content-Type': 'application/json',
             'X-Key': apiKey
           },
-          timeout: 8000 // 8 second timeout for status checks
+          timeout: 5000 // 5 second timeout for status checks
         }
       );
       
