@@ -2,6 +2,9 @@
 
 A vaporwave-style image generation app using the BlackForestLabs API.
 
+![goatwave-screen](https://github.com/user-attachments/assets/597e8896-aeef-4002-b8f3-f957b1c69258)
+
+
 ## Features
 
 - Generate stunning vaporwave-style images using AI
