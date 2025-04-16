@@ -1,27 +1,34 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { prompt, apiKey, modelId } = body;
+    const { prompt } = body;
+
+    // Get API key and model ID from server-side environment variables
+    const apiKey = process.env.BLACKFOREST_API_KEY;
+    const modelId = process.env.MODEL_ID;
 
     console.log('Received request with:', { 
-      prompt: prompt ? 'present' : 'missing', 
-      apiKey: apiKey ? 'present' : 'missing', 
-      modelId: modelId ? 'present' : 'missing' 
+      prompt: prompt ? 'present' : 'missing'
     });
 
-    if (!prompt || !apiKey || !modelId) {
+    if (!prompt) {
       return NextResponse.json(
-        { error: 'Missing required parameters' },
+        { error: 'Missing prompt parameter' },
         { status: 400 }
       );
     }
 
-    // Log the first few characters of the API key for debugging (don't log the full key)
-    console.log('API Key starts with:', apiKey.substring(0, 5) + '...');
-    console.log('Model ID:', modelId);
+    if (!apiKey || !modelId) {
+      return NextResponse.json(
+        { error: 'Server configuration error: Missing API key or model ID' },
+        { status: 500 }
+      );
+    }
 
     // Check if we should use the mock response for testing
     const useMockResponse = process.env.NEXT_PUBLIC_USE_MOCK_RESPONSE === 'true';

@@ -12,37 +12,13 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [apiKey, setApiKey] = useState("");
-  const [modelId, setModelId] = useState("");
   const placeholderText = "lebron james sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic";
-
-  useEffect(() => {
-    // Get API key and model ID from environment variables
-    setApiKey(process.env.BLACKFOREST_API_KEY || "");
-    setModelId(process.env.MODEL_ID || "");
-  }, []);
 
   const generateImage = async () => {
     if (!prompt.trim()) {
       setError("Please enter a prompt");
       return;
     }
-
-    if (!apiKey) {
-      setError("API key is missing. Please check your .env.local file.");
-      return;
-    }
-
-    if (!modelId) {
-      setError("Model ID is missing. Please check your .env.local file.");
-      return;
-    }
-
-    // Basic validation for API key format
-    // if (!apiKey.startsWith('bfl_')) {
-    //   setError("Invalid API key format. BlackForestLabs API keys should start with 'bfl_'");
-    //   return;
-    // }
 
     setLoading(true);
     setError("");
@@ -53,9 +29,7 @@ export default function Home() {
       
       // Call our Next.js API route instead of the BlackForestLabs API directly
       const response = await axios.post('/api/generate', {
-        prompt: fullPrompt,
-        apiKey: apiKey,
-        modelId: modelId
+        prompt: fullPrompt
       });
 
       if (response.data && response.data.output && response.data.output[0]) {
@@ -81,15 +55,15 @@ export default function Home() {
       if (err.response?.status === 403) {
         setError(`Authentication failed (403). ${errorDetails}`);
       } else if (err.response?.status === 401) {
-        setError(`Unauthorized (401). Your API key may be invalid or expired. ${errorDetails}`);
+        setError(`Unauthorized (401). ${errorDetails}`);
       } else if (err.response?.status === 400) {
         setError(`Bad request (400). ${errorDetails}`);
       } else if (err.response?.status === 404) {
-        setError(`Not found (404). The API endpoint may be incorrect. ${errorDetails}`);
+        setError(`Not found (404). ${errorDetails}`);
       } else if (err.response?.status === 429) {
-        setError(`Rate limited (429). You may have exceeded your API quota. ${errorDetails}`);
+        setError(`Rate limited (429). ${errorDetails}`);
       } else if (err.response?.status === 500) {
-        setError(`Server error (500). The API server encountered an error. ${errorDetails}`);
+        setError(`Server error (500). ${errorDetails}`);
       } else {
         setError(`${errorMessage}: ${errorDetails}`);
       }
