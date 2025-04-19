@@ -12,6 +12,7 @@ export default function Home() {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showHint, setShowHint] = useState(false);
   const placeholderText = "lebron james sitting on a throne made of old CRT TVs, palm trees swaying around, city skyline at dusk, pixel clouds, lo-fi synthwave mood, floating cassette tapes, static VCR aesthetic";
 
   const generateImage = async () => {
@@ -131,17 +132,23 @@ export default function Home() {
               <br />
               淡い夢の風景、ネオンの空、グリッドの下で神話が再構築される
             </div>
-            <textarea
-              id="prompt"
-              className="pastel-input w-full p-3 rounded-md h-32"
-              placeholder={placeholderText}
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            {/* <p className="text-sm mt-2 text-[#333]">
-              Note: "LEBRONGOATWAVE" will be automatically added to your prompt
-            </p> */}
+            <div className="mb-8 relative">
+              <textarea
+                id="prompt"
+                className="pastel-input w-full p-3 rounded-md h-32"
+                placeholder={placeholderText}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                onKeyDown={handleKeyDown}
+                onFocus={() => setShowHint(true)}
+                onBlur={() => setShowHint(false)}
+              />
+              {showHint && (
+                <div className="absolute -bottom-8 left-0 bg-gray-800 text-white text-xs px-3 py-1 rounded-md shadow-lg">
+                  Press Tab to use the example prompt
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="flex justify-center space-x-4">
