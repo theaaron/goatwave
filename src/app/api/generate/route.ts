@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       
       return NextResponse.json({
         output: [
-          "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=1000&auto=format&fit=crop"
+          "/image.jpeg"
         ],
         message: "Mock response for testing"
       });
